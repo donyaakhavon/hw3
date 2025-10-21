@@ -14,8 +14,7 @@ struct Node
 
     Node(int v, Node* n) : val(v), next(n) {}
 };
-
-
+// this implementation with the Node* n helps for linking nodes automatically rather than doing it manually with node2->next = node1; we can just do Node* node 2 = new Node(10, node1);
 /**
  * Given a linked list pointed to by head, creates two lists
  * where all values less than or equal to the pivot value are
