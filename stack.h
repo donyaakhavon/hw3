@@ -26,12 +26,12 @@ public:
 
     template <typename T>
     Stack <T>::~Stack() {}
-
+// returns true if stack is empty
     template <typename T>
     bool Stack <T>::empty() const {
         return std::vector<T>::empty(); // also must scope to BC
     }
-
+// returns num of elemnets in stack
     template <typename T>
     size_t Stack <T>::size() const {
         return std::vector<T>::size(); // must scope to base class
@@ -41,7 +41,7 @@ public:
     void Stack <T>::push(const T& item) {
         std::vector<T>::push_back(item);
     }
-
+// removes top element
     template <typename T>
     void Stack <T>::pop(){
         if(empty()) {
@@ -49,7 +49,7 @@ public:
         }
          std::vector<T>::pop_back(); // throws std::underflow_error if empty
     }
-
+// returns reference to top element
     template <typename T>
     const T& Stack <T>::top() const {
         if(empty()) {

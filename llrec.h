@@ -86,11 +86,11 @@ Node* llfilter(Node* head, Comp pred){
     // btw, pred is the paramter name for the functor object that gets passed into the function. its short for predicate and returns true or fals.e 
     if(head == nullptr) return nullptr;
     if(pred(head->val)) { 
-        Node* nextNode = head->next;
+        Node* nextNode = head->next; // save next node
         delete head;
-        return llfilter(nextNode, pred);
+        return llfilter(nextNode, pred); // recurse on rest
     } else {
-        head->next = llfilter(head->next, pred);
+        head->next = llfilter(head->next, pred); // keep this node ,filter rest recursively 
         return head; 
     }
 }

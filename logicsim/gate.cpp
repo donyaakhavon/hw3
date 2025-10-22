@@ -99,16 +99,16 @@ Event* NotGate::update(uint64_t current_time)
 {
   char in_state = m_inputs[0]->getState();
   char state;
-
+// not truth table: 0>1, 1>0, x>x
   if(in_state == '0') {
     state = '1';
   } else if(in_state == '1') {
     state = '0';
   } else {
-    state = 'X';
+    state = 'X'; // undefined stays undefined
   }
 
-  Event* e = nullptr;
+  Event* e = nullptr; // only create event if state changed
   if (state != m_current_state)
   {
     m_current_state = state;

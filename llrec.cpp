@@ -19,16 +19,16 @@ void llpivot(Node*& head, Node*& smaller, Node*& larger, int pivot) {
   }
 
   else {
-    Node* temp = head->next;
+    Node* temp = head->next; // save next node
     if(head->val <= pivot) {
-      smaller = head;
+      smaller = head; // add to smaller list, recursively build rest of smaller and all of larger
       head = nullptr;
       llpivot(temp, smaller->next, larger, pivot);
     }
     else if(head->val > pivot) {
       larger=head; 
       head =nullptr;
-      llpivot(temp, smaller, larger->next, pivot);
+      llpivot(temp, smaller, larger->next, pivot); // recursively build all of smaller and rest of larger 
     }
   }
 }

@@ -113,9 +113,9 @@ bool Circuit::parse(const char* fname)
                 if(s_type == "NOT") 
                 {
                     std::string s_input;
-                    getline(ss, s_input, ',');
+                    getline(ss, s_input, ','); // read input wire id
                     std::string s_out;
-                    getline(ss, s_out, ',');
+                    getline(ss, s_out, ','); //. read output wire id. then create not gate with specified in and out wires. 
                     m_gates.push_back(new NotGate(m_wires[stoi(s_input)], m_wires[stoi(s_out)]));
 
                 }

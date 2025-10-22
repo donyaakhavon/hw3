@@ -109,17 +109,17 @@ void Heap<T,PComparator>::pop()
   if(empty()){
    throw std::underflow_error("Heap is empty");
   }
-  data_[0] = data_.back();
+  data_[0] = data_.back(); // move last element to root
   data_.pop_back();
   if(empty()) return;
 
   // declare
-  size_t idx = 0;
+  size_t idx = 0; // heapify down from root
   bool swapped = true;
 
   while(swapped) {
     swapped = false;
-    size_t bestC = m_ * idx + 1;
+    size_t bestC = m_ * idx + 1; // first child index
     if(bestC >= size()) {
       break;
     }
@@ -135,7 +135,7 @@ void Heap<T,PComparator>::pop()
       }
      }
       if(comp_(data_[bestC], data_[idx])) {
-      std::swap(data_[idx], data_[bestC]);
+      std::swap(data_[idx], data_[bestC]); // swap with best child if needed
         idx=bestC;
         swapped = true;
     }
@@ -148,8 +148,8 @@ void Heap<T, PComparator>::push(const T& item)
   data_.push_back(item);
   size_t idx = data_.size() -1;
 
-  while (idx > 0) {
-    size_t parent = (idx - 1) / m_;
+  while (idx > 0) { // bubble element up to correct spot
+    size_t parent = (idx - 1) / m_; // parent index in m-ary heap
     if(comp_(data_[idx], data_[parent])) {
       std::swap(data_[idx], data_[parent]);
       idx = parent;
@@ -161,7 +161,7 @@ void Heap<T, PComparator>::push(const T& item)
 
 
 // empty
-template <typename T, typename PComparator>
+template <typename T, typename PComparator> // returns number of elelments in heap
 bool Heap<T, PComparator>::empty() const 
 {
   return data_.empty();
