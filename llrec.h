@@ -46,6 +46,7 @@ struct Node
  *   Pivot value
  *
  */
+ 
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
 
 /**
@@ -68,22 +69,31 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
  *   may change [i.e. be filtered])
  *
  */
-template <typename Comp>
-Node* llfilter(Node* head, Comp pred);
+
+
 
 //*****************************************************************************
 // Since template implementations should be in a header file, we will
 // implement the above function now.
 //*****************************************************************************
 
+
 template <typename Comp>
-Node* llfilter(Node* head, Comp pred)
-{
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
-
-
+Node* llfilter(Node* head, Comp pred){
+    // b case if head is null return null// recursive case: check if curr node should be filtered using pred head->val
+    // if removed, save next node, delete curr, and recursively call llfilter on rest of list// if not removed, keep curr node, recursively filter rest of hte list, update head-> next ot point ot the filtered rest. 
+    
+    // btw, pred is the paramter name for the functor object that gets passed into the function. its short for predicate and returns true or fals.e 
+    if(head == nullptr) return nullptr;
+    if(pred(head->val)) { 
+        Node* nextNode = head->next;
+        delete head;
+        return llfilter(nextNode, pred);
+    } else {
+        head->next = llfilter(head->next, pred);
+        return head; 
+    }
 }
+
 
 #endif
